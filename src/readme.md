@@ -1,3 +1,5 @@
+Node.js supposed to be installed)
+
 to run this files clone server to work directory
 run next comands:
 
