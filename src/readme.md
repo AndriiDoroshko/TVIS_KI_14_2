@@ -1,20 +1,31 @@
 to run this files clone server to work directory
 run next comands:
+
 `npm init`
+
 `//add the details of your project`
+
 `npm i ws express --save`
+
 `//install the necessary types (and typescript)`
+
 `npm i typescript @types/ws @types/express -D`
+
 `//install typescript-compiler`
+
 `npm install typescript-compiler`
 
 
 go to src
 
 run next comand:
+
 `//typescript compile`
+
 `tsc`
+
 `//run server`
+
 `node ./dist/server/index.js`
 
 
