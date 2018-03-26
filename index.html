@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+<title>Rooms</title>
+
+<script>
+
+function Room(roomId){ 
+this.roomId = roomId;
+this.computers = new Array();
+
+this.addComputer = function(Computer){
+this.computers[this.computers.length] = Computer;
+}
+}
+
+function Computer(computerId, state){ 
+this.computerId = computerId;
+this.state = state;
+
+this.changeState = function(newState){
+this.state = newState;
+}
+}
+
+function createRoom33(){
+
+var Computer33n1 = new Computer('id33n1', 'online');
+Room33.addComputer(Computer33n1);
+
+var Computer33n2 = new Computer('id33n2', 'online');
+Room33.addComputer(Computer33n2);
+
+var Computer33n3 = new Computer('id33n3', 'online');
+Room33.addComputer(Computer33n3);
+
+var Computer33n4 = new Computer('id33n4', 'online');
+Room33.addComputer(Computer33n4);
+
+var Computer33n5 = new Computer('id33n5', 'online');
+Room33.addComputer(Computer33n5);
+
+var Computer33n6 = new Computer('id33n6', 'online');
+Room33.addComputer(Computer33n6);
+
+var Computer33n7 = new Computer('id33n7', 'offline');
+Room33.addComputer(Computer33n7);
+}
+
+function createRoom37(){
+var Computer37n1 = new Computer('id37n1', 'online');
+Room37.addComputer(Computer37n1);
+
+var Computer37n2 = new Computer('id37n2', 'offline');
+Room37.addComputer(Computer37n2);
+
+var Computer37n3 = new Computer('id37n3', 'online');
+Room37.addComputer(Computer37n3);
+
+var Computer37n4 = new Computer('id37n4', 'offline');
+Room37.addComputer(Computer37n4);
+
+var Computer37n5 = new Computer('id37n5', 'online');
+Room37.addComputer(Computer37n5);
+}
+
+function createRoom39(){
+var Computer39n1 = new Computer('id39n1', 'offline');
+Room39.addComputer(Computer39n1);
+
+var Computer39n2 = new Computer('id39n2', 'online');
+Room39.addComputer(Computer39n2);
+
+var Computer39n3 = new Computer('id39n3', 'offline');
+Room39.addComputer(Computer39n3);
+}
+
+var Room33 = new Room('id33');
+var Room37 = new Room('id37');
+var Room39 = new Room('id39');
+
+createRoom33();
+createRoom37();
+createRoom39();
+
+
+function generateRoom(Room){
+	var table = document.createElement('table');
+	
+	var tr = document.createElement('tr');
+	for(var i = 0; i < Room.computers.length; i++) {
+	//alert("i = " + i);
+		var td = document.createElement('td');
+						
+		if(Room.computers[i].state == "online")
+			td.innerHTML = "<img src='compGreen.jpg'/>";
+		else
+			td.innerHTML = "<img src='compRed.jpg'/>";
+						
+		    tr.appendChild(td);
+					
+			table.appendChild(tr);
+	}
+	table.classList.add('table');	
+	return table;
+	}
+
+function gets2(){	
+
+	var contentTable = document.getElementById("content");
+	
+	var valueOne = document.getElementById("rooms").value;
+	if(valueOne == 33){
+		contentTable.innerHTML = '';
+		contentTable.appendChild(generateRoom(Room33));
+		}
+	if(valueOne == 37){
+		contentTable.innerHTML = '';
+		contentTable.appendChild(generateRoom(Room37));
+		}
+	if(valueOne == 39){
+		contentTable.innerHTML = '';
+		contentTable.appendChild(generateRoom(Room39));
+		}
+}
+
+</script>
+
+<body>
+
+<table width="100%" >
+	<tr width="15%">
+		<td>
+	
+		<label>Choose a room:
+		<br>
+		<br>
+			<form>
+			<select name = "rooms" id = "rooms">
+			<option>33</option>
+			<option>37</option>
+			<option>39</option>
+			</select>
+
+			<br>
+			<br>
+
+			<input type="button" name="formOneSubmit" value="Change" onclick="javascript: gets2()"/>
+			</form>
+
+		</label>
+		
+		</td>
+		
+		<td  width="85%" align="center">		
+		<div id='content'></div>		
+		
+		</td>
+		
+		</tr>
+		</table>
+
+</body>
+</html>
