@@ -1,44 +1,84 @@
-<!DOCTYPE HTML>
-<html>
-<title>Rooms</title>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="display.ico">
 
-<script src='scriptForRooms.js'></script>
+    <title>Dashboard</title>
+
+    <!-- Styles for this template -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="dashboard.css" rel="stylesheet">
+</head>
 
 <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <h7 class="navbar-brand col-sm-3 col-md-2 mr-0">KI-14-2</h7>
+    </nav>
 
-<table width="100%" >
-	<tr width="15%">
-		<td>
-	
-		<label>Choose a room:
-		<br>
-		<br>
-			<form method="get">
-			<select name = "rooms" id = "rooms">
-			
-			<option>33</option>
-			<option>37</option>
-			<option>39</option>
-			</select>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Classes</span>
+                        <a class="d-flex align-items-center text-muted" href="#">
+                            <span data-feather="home"></span>
+                        </a>
+                    </h6>
+                    <ul class="nav flex-column" id = "rooms">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript: getData(33)">
+                                <span data-feather="bar-chart-2"></span>
+                                33
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript: getData(37)">
+                                <span data-feather="bar-chart-2"></span>
+                                37
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript: getData(39)">
+                                <span data-feather="bar-chart-2"></span>
+                                39
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-			<br>
-			<br>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Computers status</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group mr-2">
+                            <button class="btn btn-sm btn-outline-secondary">Reload</button>
+                        </div>
+                    </div>
+                </div>
 
-			<input type="button" name="formOneSubmit" value="Change" onclick="javascript: getData()"/>
-			</form>
-		</label>
-		
-		</td>
-		
-		<td  width="85%" align="center">		
-		<div id='content'></div>
+                <div id="result">
+                    <h6>Please, choose class room at the left menu</h6>
+                </div>
 
-		<div id='jsonContent'></div>		
-		
-		</td>
-		
-		</tr>
-		</table>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript Core -->
+
+	<script src='scriptForRooms.js'></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+	<script>
+        feather.replace()
+    </script>
 
 </body>
 </html>

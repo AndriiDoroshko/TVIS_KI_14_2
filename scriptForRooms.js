@@ -30,37 +30,31 @@ this.state = newState;
 var NetworkUniversity = new Network();
 
 function generateRoom(Room){
-	var table = document.createElement('table');
 	
-	var tr = document.createElement('tr');
+	var targetDiv = document.createElement('div');
 	for(var i = 0; i < Room.computers.length; i++) {
 
-		var td = document.createElement('td');
+		 var span = document.createElement('span');
 			
 		if(!Room.computers[i].isChange)
-			td.innerHTML = "<img src='compGrey.jpg'/>";
+			 span.innerHTML = "<img src='green_computer.png' height='150em' vspace='20em' hspace='20em'/>";
 		
 		if(Room.computers[i].state == "online")
 			if(Room.computers[i].isChange)
-				td.innerHTML = "<img src='compGreen.jpg'/>";
+				 span.innerHTML = "<img src='green_computer.png' height='150em' vspace='20em' hspace='20em'/>";
 			
 		if(Room.computers[i].state == "offline")
 			if(Room.computers[i].isChange)
-				td.innerHTML = "<img src='compRed.jpg'/>";
+				span.innerHTML = "<img src='red_computer.png' height='150em' vspace='20em' hspace='20em'/>";
 		
-						
-		    tr.appendChild(td);
-					
-			table.appendChild(tr);
+		targetDiv.appendChild(span);
 	}
-	table.classList.add('table');	
-	return table;
+		
+	return targetDiv;
 	}
 	
-function getData(){
-	alert('in function');
-	var valueOne = document.getElementById("rooms").value;
-	alert(valueOne);
+function getData( valueOne ){
+	
 
 	var arrayRooms = Array();
 
@@ -79,20 +73,25 @@ function getData(){
 	  };
 
 	arrayRooms[arrayRooms.length] = event;
+	
+	event = {
+		status: "online",
+		serialNumber: "id39n2",
+		networkId: "39"
+	  };
+
+	arrayRooms[arrayRooms.length] = event;
 
 	var str = JSON.stringify(arrayRooms);
-	//alert( str ); // {"title":"Конференция","date":"сегодня"}
 
 	event = JSON.parse(str);
-
-	alert( event[0]['computerId'] ); // {"title":"Конференция","date":"сегодня"}
-
+	
 	//take data
 
-	dealWithNewData(event);
+	dealWithNewData(event, valueOne);
 }
 
-function dealWithNewData(res){
+function dealWithNewData(res, valueOne){
 	
 	if(NetworkUniversity.rooms.length == 0)
 		NetworkUniversity.addRoom(res[0]['networkId']);
@@ -145,15 +144,18 @@ function dealWithNewData(res){
 			}			
 		}
 
-		gets2();	
+		gets2(valueOne);	
 			
 }
 
-function gets2(){
+function gets2(selectedRoom){
 
-	var contentTable = document.getElementById("content");
+	var displayTarget = document.getElementById("result");
+    displayTarget.innerHTML = "";
 	
-	var selectedRoom = document.getElementById("rooms").value;
+	var header = document.createElement("H5");
+    header.appendChild(document.createTextNode("Class room #" + selectedRoom));   
+    displayTarget.appendChild( header );
 	
 	var flag = false;
 	for(var i = 0; i < NetworkUniversity.rooms.length; i++){
@@ -162,13 +164,12 @@ function gets2(){
 		{			
 			flag = true;
 			
-			contentTable.innerHTML = '';
-			contentTable.appendChild(generateRoom(NetworkUniversity.rooms[i]));
+			displayTarget.appendChild(generateRoom(NetworkUniversity.rooms[i]));
 			
 		}		
 	}
 	if(!flag)
-			contentTable.innerHTML = 'not exist';	
+			displayTarget.innerHTML = 'not exist';	
 		
 	updateSelectList();
 		
@@ -179,8 +180,15 @@ function updateSelectList(){
 	newGet.innerHTML = '';
 	
 	for(var j = 0; j < NetworkUniversity.rooms.length; j++){	
-		var newOption = document.createElement('option');
-		newOption.innerHTML = NetworkUniversity.rooms[j].roomId;
+		var newOption = document.createElement('li');
+		var roomId = NetworkUniversity.rooms[j].roomId;
+		 newOption.innerHTML = "<li class='nav-item'>\
+                            <a class='nav-link' href='javascript: getData("+roomId+")'>\
+                                <span data-feather='bar-chart-2'></span>"
+                                + roomId+
+                            "</a>\
+                        </li>";
+						
 		newGet.appendChild(newOption);
 	}		
 }
