@@ -22,12 +22,74 @@ wss.on('connection', (ws: WebSocket) => {
 
         if(message === "web" ) {
 
+            
             var arrayRooms = Array();
 
+            
             var event = {
                 ipAdress: "192.168.0.1",
                 mac: "AA::BB::CC",
                 state: "online",
+                roomId: "37",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            var event = {
+                ipAdress: "192.168.0.1",
+                mac: "AA::BB::CB",
+                state: "offline",
+                roomId: "37",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            var event = {
+                ipAdress: "192.168.0.1",
+                mac: "AA::BB::CC",
+                state: "offline",
+                roomId: "37",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            var event = {
+                ipAdress: "192.168.0.1",
+                mac: "KK::BB::CC",
+                state: "offline",
+                roomId: "37",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            var event = {
+                ipAdress: "192.168.0.1",
+                mac: "AA::SS::CC",
+                state: "online",
+                roomId: "37",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            var event = {
+                ipAdress: "192.168.0.1",
+                mac: "AB::BB::CC",
+                state: "online",
+                roomId: "37",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            var event = {
+                ipAdress: "192.168.0.1",
+                mac: "AA::BD::CC",
+                state: "offline",
                 roomId: "37",
                 timestamp : "2018"
               };
@@ -39,6 +101,36 @@ wss.on('connection', (ws: WebSocket) => {
                 mac: "AA::BB::CC",
                 state: "offline",
                 roomId: "39",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            event = {
+                ipAdress: "192.168.0.1",
+                mac: "AA::BB::CC",
+                state: "online",
+                roomId: "39",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            event = {
+                ipAdress: "192.168.0.1",
+                mac: "AA::BB::CC",
+                state: "online",
+                roomId: "34",
+                timestamp : "2018"
+              };
+        
+            arrayRooms.push(event);
+
+            event = {
+                ipAdress: "192.168.0.1",
+                mac: "AA::BB::CC",
+                state: "offline",
+                roomId: "34",
                 timestamp : "2018"
               };
         
