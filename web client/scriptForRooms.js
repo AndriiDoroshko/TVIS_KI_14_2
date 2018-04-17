@@ -95,8 +95,18 @@ function generateRoomHTML(room){
 		if(pc.state == "offline")
 			pcImg = "red_computer.png";
 
+		var compInfo  = "MAC address: " + pc.mac + "\nIP address: " + pc.ipAdress + "\nState: " + pc.state + "\nTimestamp: " + pc.timestamp;
+
 		var span = document.createElement('span');
-		span.innerHTML = "<img src='" + pcImg +"' height='150em' vspace='20em' hspace='20em'/>";
+
+		span.innerHTML = "<div class='box'>\
+						<img src='" + pcImg +"' height='150em' vspace='20em' hspace='20em' title='" + compInfo + "'/>\
+						<h6 id='pcInfo'>" + pc.mac + "</h6>\
+						<h6 id='pcInfo'>" + pc.ipAdress + "</h6>\
+						<h6 id='pcInfo'>" + pc.state + "</h6>\
+						<h6 id='pcInfo'>" + pc.timestamp + "</h6>\
+						</div>";
+
 		targetDiv.appendChild(span);
 	});
 		
@@ -115,12 +125,12 @@ function getData(roomId) {
 		return;
 
 	fillNetworkData(JSON.parse(stringWithPC), roomId);
+
 	generateNetworkHTML(roomId);
 }
 
 function fillNetworkData(arrayWithPc, roomId){
-	
-	
+
 	arrayWithPc.forEach(function(pc) {
 		
 		var pcRoom = null;

@@ -1,0 +1,9 @@
+div#pcInfo {
+        width: 100px;
+        text-align: center;
+    }
+
+.box {
+        display: inline-block;
+        text-align: center;
+    }
