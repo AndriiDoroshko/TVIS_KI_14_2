@@ -1,46 +1,49 @@
-export class User {
+export class PCInfo {
 
     status: Status;
-    serialNumber: string;
-    networkId: number;
+    ip: string;
+    mac: string;
+    name: string;
+    class_number: string
+    timestamp: Date;
 
-    constructor(status: Status, serialNumber: string, networkId: number) {
-      this.status = status;
-      this.serialNumber = serialNumber;
-      this.networkId = networkId;
+    constructor(
+      ip: string,
+      mac: string,
+      name: string,
+      class_number: string
+    ){
+      this.status = Status.online;
+      this.ip = ip;
+      this.mac = mac;
+      this.name = name;
+      this.class_number = class_number;
+      this.timestamp = new Date();
     }
 
-    toJSON(): UserJSON { return Object.assign({}, this, {
-                                status: this.status.toString(),
-                                serialNumber: this.serialNumber.toString(),
-                                networkId: this.networkId.toString()});
-  }
+    // toJSON(): UserJSON { 
+    //   return Object.assign({}, this, {
+    //                             status: this.status.toString(),
+    //                             serialNumber: this.serialNumber.toString(),
+    //                             networkId: this.networkId.toString()});
+    // }
 
-  static fromJSON(json: UserJSON|string): User {
-     if (typeof json === 'string') { 
-            return JSON.parse(json, User.reviver);
-    } else {
-      let user = Object.create(User.prototype);
-      return Object.assign(user, json, { status: new String(json.status),
-                                         serialNumber: new String(json.serialNumber),
-                                         networkId: new Number(json.networkId)
-      });
-    }
-  }
+  static fromJSON(json: string): PCInfo {
+    var user: PCInfo = JSON.parse(json);
 
-  static reviver(key: string, value: any): any {
-    return key === "" ? User.fromJSON(value) : value;
+    user.status = Status.online;
+    user.timestamp = new Date();
+    return user;
   }
-
 }
-
   export enum Status { 
     online = "online",
     offline = "offline"
    };
 
    interface UserJSON {
-    status: Status;
-    serialNumber: string;
-    networkId: number;
+    ip: string;
+    mac: string;
+    name: string;
+    class_number: string
    }
