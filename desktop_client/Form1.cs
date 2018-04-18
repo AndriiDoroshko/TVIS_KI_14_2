@@ -119,11 +119,6 @@ namespace TVIS
             myThread.Start();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ClassNumber = textBox1.Text;
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -132,6 +127,21 @@ namespace TVIS
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            ClassNumber = "39";
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            ClassNumber = "33";
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            ClassNumber = "37";
         }
     }
 }

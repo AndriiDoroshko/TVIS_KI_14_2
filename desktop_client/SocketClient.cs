@@ -44,7 +44,9 @@ namespace TVIS
             {
                 while (sender.State == WebSocketState.Open)
                 {
-                    ArraySegment<byte> bytesToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes(GetSerializedInfo()));
+                    string json = GetSerializedInfo();
+                    string jsonAndKey = "desk" + json;
+                    ArraySegment<byte> bytesToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes(jsonAndKey));
                     sender.SendAsync(bytesToSend, WebSocketMessageType.Text, true, CancellationToken.None);
                     await Task.Delay(delay);
                 }
@@ -78,6 +80,7 @@ namespace TVIS
             }
 
             PCInfo pcinfo = new PCInfo();
+
             pcinfo.class_number = ClassNumber;
             pcinfo.mac = macAddress;
             pcinfo.ip = ipAddress;

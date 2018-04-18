@@ -11,7 +11,7 @@ var knownPCArray: PCInfo[] = [];
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
-const timeout = 5000;
+const timeout = 300000;
 
 var clientsMap = new Set< WebSocket >();
 
@@ -21,22 +21,13 @@ wss.on('connection', (ws: WebSocket) => {
     ws.on('message', (message: string) => {
 
         if(message == "web" ) {
-        
-            var demoPC = new PCInfo(
-                    "127.0.0.1"
-                ,   "AA11BB22CC33"
-                ,   "SuchACoolPC"
-                ,   "33"
-            )
 
-            knownPCArray.push(demoPC);
             var str = JSON.stringify(knownPCArray);
-            knownPCArray.pop();
-
             ws.send(str);
 
         } else if( message.substr(0, 4) == "desk" ) {
             
+         
             var pcInfoInJson = message.substr(4, message.length);
             var newPC = PCInfo.fromJSON(pcInfoInJson);
             
@@ -47,7 +38,8 @@ wss.on('connection', (ws: WebSocket) => {
                 if(
                         knownPC.ip == newPC.ip
                     &&  knownPC.mac == newPC.mac
-                    &&  knownPC.name == knownPC.name
+                    &&  knownPC.name == newPC.name
+                    &&  knownPC.class_number == newPC.class_number
                 ) {
                     pcIsAlreadyKnown = true;
                 }
